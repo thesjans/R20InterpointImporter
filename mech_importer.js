@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Interpoint Macro Importer
 // @namespace    Roll20InterpointMacroImporter
-// @version      0.5
+// @version      0.5.1
 // @description  Allows users to easily import mechs using the Interpoint Macros
 // @author       thesjans
 // @icon         https://www.google.com/s2/favicons?domain=tampermonkey.net
@@ -715,7 +715,11 @@ let ccCodeDict = {
         "mw_blackspot_targeting_laser": "Blackspot",
         "mw_shard_launcher": "Shrapnel Spiker",
         "mw_tactical_melee_weapon": "Tactical Melee",
-        "mw_heavy_melee_weapon": "Heavy Melee"
+        "mw_heavy_melee_weapon": "Heavy Melee",
+        "mw_sharanga_missiles": "Sharanga",
+        "mw_gandiva_missiles": "Gandiva",
+        "mw_pinaka_missiles": "Pinaka",
+        "mw_vijaya_rockets": "Vijaya"
     },
     "mods": {
         "wm_uncle_class_comp_con": "UNCLE Class",
