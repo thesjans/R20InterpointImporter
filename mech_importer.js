@@ -7,6 +7,8 @@
 // @icon         https://www.google.com/s2/favicons?domain=tampermonkey.net
 // @grant        none
 // @include      https://app.roll20.net/editor*
+// @updateURL    https://raw.githubusercontent.com/thesjans/R20InterpointImporter/main/mech_importer.js
+// @downloadURL  https://raw.githubusercontent.com/thesjans/R20InterpointImporter/main/mech_importer.js
 // ==/UserScript==
 
 let printMech = {};
