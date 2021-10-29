@@ -567,7 +567,7 @@ let sheetData = {
         "[Static Conductor Coils](~636)",
         "[Integrated Latticework](~637)",
         "[Helios Prism Array](~638)",
-        "[Stasis Trauma Repsonse](~662)",
+        "[Stasis Trauma Response](~662)",
         "[Reflex Boosters](~692)",
         "[Invasive Target Lock](~693)",
         "[\"Vamp\" Coolant Siphon](~694)",
@@ -719,7 +719,8 @@ let ccCodeDict = {
         "mw_sharanga_missiles": "Sharanga",
         "mw_gandiva_missiles": "Gandiva",
         "mw_pinaka_missiles": "Pinaka",
-        "mw_vijaya_rockets": "Vijaya"
+        "mw_vijaya_rockets": "Vijaya",
+        "mw_bristlecrown_flechette_launcher": "Bristlecrown"
     },
     "mods": {
         "wm_uncle_class_comp_con": "UNCLE Class",
@@ -734,7 +735,9 @@ let ccCodeDict = {
         "ms_h0r_os_system_upgrade_ii": "HOR OS2",
         "ms_unravel": "Final Secret",
         "ms_unhinge_chronoflow": "Unhinge Chronology",
-        "ms_distort": "Realspace Breach"
+        "ms_distort": "Realspace Breach",
+        "ms_tear_firmament": "Wandering Nightmare",
+        "ms_rewrite": "Antilinear Time"
     },
     "systems": {
         "ms___scorpion_v70.1": "Scorpion V70.1",
@@ -747,7 +750,10 @@ let ccCodeDict = {
         "ms_rapid_burst_jump_jet_system": "Rapid Burst Jump Jets",
         "ms_satic_conductor_coils": "Static Conductor Coils",
         "ms_jäger_kunst_i": "Jäger Kunst 1",
-        "ms_jäger_kunst_ii": "Jäger Kunst 2"
+        "ms_jäger_kunst_ii": "Jäger Kunst 2",
+        "ms_type_i_flight_system": "Type 1 Flight",
+        "ms_ramjet": "Ram Jets",
+        "ms_seismic_pulse": "Seismic Ripper"
     },
     "deployables": {
         "ms_pattern_a_smoke_charges": "Smoke Charges",
@@ -934,7 +940,7 @@ function parse(ccCode, type) {
             "data": sheetData[type][name]
         }
     } else {
-        let normilizationRegex = /([\[\s"-\/\(\)]|\]\(~\d{1,3}\)|(NHP)|(CLASS)|(system$))/gi;
+        let normilizationRegex = /([\[\s"-\/\(\)]|\]\(~\d{1,3}\)|(NHP)|(CLASS)|(system$)|(system]\(~\d+\)$))/gi;
         let result = sheetData[type].find(macroString => macroString.replace(normilizationRegex, "").toLowerCase() == name.replace(normilizationRegex, "").toLowerCase());
         return result
     }
