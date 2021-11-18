@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Interpoint Macro Importer
 // @namespace    Roll20InterpointMacroImporter
-// @version      0.5.1
+// @version      0.5.2
 // @description  Allows users to easily import mechs using the Interpoint Macros
 // @author       thesjans
 // @icon         https://www.google.com/s2/favicons?domain=tampermonkey.net
@@ -422,7 +422,25 @@ let sheetData = {
         "[Annihilation Nexus](~90)",
         "[Mimic Gun](~91)",
         "[Heat Transfer Harpoon](~696)",
-        "[Heavy Chain Mace](~697)"
+        "[Thermite Harpoon Cannon](~696)",
+        "[Heavy Chain Mace](~697)",
+        "[Spyglass' Missile Racks](~667)",
+        "[Rubicon's Smartgun](~668)",
+        "[Hothead's Burst Launcher](~670)",
+        "[Quicksilver's Tachyon Lance](~673)",
+        "[Operator's Siege Cannon](~674)",
+        "[Deca's D/D 288](~675)",
+        "[Fruitpunch Tsunami's Heavy Machine Gun](~676)",
+        "[Stardiver's Kinetic Hammer](~700)",
+        "[Phoenix' Andromeda](~703)",
+        "[Whitefeather's Autopod](~704)",
+        "[Bulwark's Gandiva Missiles](~706)",
+        "[Navarone's Tachyon Lance](~708)",
+        "[Heat Raze's Blackspot](~709)",
+        "[Z-X40's Plasma Thrower](~710)",
+        "[Tsar's Nanocarbon Sword](~712)",
+        "[Artemis' Probability Flayer](~713)",
+        "[Wraith's Vulture DMR](~714)"
     ],
     "mods": [
         "[Paracausal Mod](~208)",
@@ -457,7 +475,8 @@ let sheetData = {
         "[Overarching Principles](~546)",
         "[Systemic Ambivalence](~547)",
         "[Crowning Ceremony](~548)",
-        "[Misfortune Casino Suite](~628)"
+        "[Misfortune Casino Suite](~628)",
+        "[Iron Maiden's Beckon](~702)"
     ],
     "tech": [
         "[Hacker3](~263)",
@@ -481,7 +500,8 @@ let sheetData = {
         "[CUBE Injection](~550)",
         "[Last Gamble](~630)",
         "[Chrono Anchor](~657)",
-        "[Timestream Shredder](~663)"
+        "[Timestream Shredder](~663)",
+        "[Metameleia's False Idol](~671)"
     ],
     "systems": [
         "[Custom Paint Job](~92)",
@@ -571,7 +591,13 @@ let sheetData = {
         "[Reflex Boosters](~692)",
         "[Invasive Target Lock](~693)",
         "[\"Vamp\" Coolant Siphon](~694)",
-        "[Adonis Exo Plating](~695)"
+        "[Adonis Exo Plating](~695)",
+        "[Artemis' Total Strength Suite I](~669)",
+        "[Dialect's Seismic Ripper](~672)",
+        "[Peregrine's Ferrous Lash](~699)",
+        "[Jockstrap's Expanded Compartment](~701)",
+        "[Whammy's External Batteries](~705)",
+        "[Valiant's Custom Paint Job](~707)"
 
     ],
     "deployables": [
@@ -592,7 +618,9 @@ let sheetData = {
         "[Spike Charges](~173)",
         "[Grounding Charges](~174)",
         "[Omnibus Plate](~578)",
-        "[Smokestack Heatsink](~581)"
+        "[Smokestack Heatsink](~581)",
+        "[Junkyard's Blink Charges](~698)",
+        "[Rolling Thunder's Roller Charges](~715)"
     ],
     "shields": [
         "[Type3 Projected Shield](~175)",
@@ -641,7 +669,8 @@ let sheetData = {
         "[Pylos-Class NHP](~536)",
         "[Castor-Class NHP](~560)",
         "[HOPLON Class NHP](~639)",
-        "[Kairos Class NHP](~665)"
+        "[Kairos Class NHP](~665)",
+        "[Insipid Moniker's Osiris Class](~711)"
     ]
 }
 
@@ -720,7 +749,24 @@ let ccCodeDict = {
         "mw_gandiva_missiles": "Gandiva",
         "mw_pinaka_missiles": "Pinaka",
         "mw_vijaya_rockets": "Vijaya",
-        "mw_bristlecrown_flechette_launcher": "Bristlecrown"
+        "mw_bristlecrown_flechette_launcher": "Bristlecrown",
+        "mw_spyglassmissileracks": "[Spyglass' Missile Racks](~667)",
+        "mw_quicksilvertachyon": "[Quicksilver's Tachyon Lance](~673)",
+        "mw_operators_siegecannon": "[Operator's Siege Cannon](~674)",
+        "mw_hotheads_burst_launcher": "[Hothead's Burst Launcher](~670)",
+        "mw_rubicons_smartgun": "[Rubicon's Smartgun](~668)",
+        "mw_decas_d_d_288": "[Deca's D/D 288](~675)",
+        "mw_fruitpunch's_heavy_machine_gun": "[Fruitpunch Tsunami's Heavy Machine Gun](~676)",
+        "mw_bulwarks_gandiva_missiles": "[Bulwark's Gandiva Missiles](~706)",
+        "mw_heats_blackspot_targeting_laser": "[Heat Raze's Blackspot](~709)",
+        "mw_whitefeathers_autopod": "[Whitefeather's Autopod](~704)",
+        "mw_wraiths_vulture_dmr": "[Wraith's Vulture DMR](~714)",
+        "mw_navarones_tachyon_lance": "[Navarone's Tachyon Lance](~708)",
+        "mw_tsars_nanocarbon_sword": "[Tsar's Nanocarbon Sword](~712)",
+        "mw_artemis_probability_flayer": "[Artemis' Probability Flayer](~713)",
+        "mw_stardivers_kinetic_hammer": "[Stardiver's Kinetic Hammer](~700)",
+        "mw_phoenix_andromeda_pattern_heavy_laser_rifle": "[Phoenix' Andromeda](~703)",
+        "mw_zx40_plasma_thrower": "[Z-X40's Plasma Thrower](~710)"
     },
     "mods": {
         "wm_uncle_class_comp_con": "UNCLE Class",
@@ -729,7 +775,8 @@ let ccCodeDict = {
     },
     "invade": {
         "ms_h0r_os_system_upgrade_i": "H0R OS1",
-        "ms_h0r_os_system_upgrade_iii": "H0R OS3"
+        "ms_h0r_os_system_upgrade_iii": "H0R OS3",
+        "ms_ic_iron_maiden's_beckoner": "[Iron Maiden's Beckon](~702)"
     },
     "tech": {
         "ms_h0r_os_system_upgrade_ii": "HOR OS2",
@@ -737,7 +784,8 @@ let ccCodeDict = {
         "ms_unhinge_chronoflow": "Unhinge Chronology",
         "ms_distort": "Realspace Breach",
         "ms_tear_firmament": "Wandering Nightmare",
-        "ms_rewrite": "Antilinear Time"
+        "ms_rewrite": "Antilinear Time",
+        "ms_metameleias_h0r_os_system_upgrade_ii": "[Metameleia's False Idol](~671)"
     },
     "systems": {
         "ms___scorpion_v70.1": "Scorpion V70.1",
@@ -753,14 +801,22 @@ let ccCodeDict = {
         "ms_jäger_kunst_ii": "Jäger Kunst 2",
         "ms_type_i_flight_system": "Type 1 Flight",
         "ms_ramjet": "Ram Jets",
-        "ms_seismic_pulse": "Seismic Ripper"
+        "ms_seismic_pulse": "Seismic Ripper",
+        "ms_artemis_total_strength_suite_i": "[Artemis' Total Strength Suite I](~669)",
+        "ms_dialects_seismic_ripper": "[Dialect's Seismic Ripper](~672)",
+        "ms_peregrines_ferrous_lash": "[Peregrine's Ferrous Lash](~699)",
+        "ms_jockstraps_expanded_compartment": "[Jockstrap's Expanded Compartment](~701)",
+        "ms_whammys_external_batteries": "[Whammy's External Batteries](~705)",
+        "ms_valiants_custom_paint_job": "[Valiant's Custom Paint Job](~707)"
     },
     "deployables": {
         "ms_pattern_a_smoke_charges": "Smoke Charges",
         "ms_pattern_a_jericho_deployable_cover": "Jericho Deployable Cover",
         "ms_pattern_b_hex_charges": "HEX Charges",
         "ms_bb_breach_blast_charges": "BB Charges",
-        "ms_roller_directed_payload_charges": "Roller Charges"
+        "ms_roller_directed_payload_charges": "Roller Charges",
+        "ms_junkyards_blink_charges": "[Junkyard's Blink Charges](~698)",
+        "ms_rts_roller_directed_payload_charges": "[Rolling Thunder's Roller Charges](~715)"
     },
     "shields": {},
     "drones": {},
@@ -768,7 +824,8 @@ let ccCodeDict = {
         "ms_comp_con_class_assistant_unit": "Comp/Con",
         "ms_technophile_1": "Servant Class NHP",
         "ms_technophile_2": "Student Class NHP",
-        "ms_technophile_3": "Enlightenment Class NHP"
+        "ms_technophile_3": "Enlightenment Class NHP",
+        "ms_insipid_moniker_osiris_class_nhp": "[Insipid Moniker's Osiris Class](~711)"
     }
 }
 
