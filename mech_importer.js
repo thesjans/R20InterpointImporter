@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Interpoint Macro Importer
 // @namespace    Roll20InterpointMacroImporter
-// @version      0.6.0
+// @version      0.6.1
 // @description  Allows users to easily import mechs using the Interpoint Macros
 // @author       thesjans
 // @icon         https://www.google.com/s2/favicons?domain=tampermonkey.net
@@ -1128,9 +1128,17 @@
     // the pilot input is the pilot's data file from compcon
     function printMech(pilot) {
 
-        let activeMech = !pilot.mechs.map(mech => mech.id).includes(pilot.state.active_mech_id) ? pilot.mechs[0] : pilot.mechs.find(mech => {
-            return mech.id === pilot.state.active_mech_id
-        });
+        let activeMech;
+        if (pilot.mechs.map(mech => mech.id).includes(pilot.state.remote_mech_id)) {
+            activeMech = pilot.mechs.find(mech => mech.id === pilot.state.remote_mech_id);
+        }
+        else if (pilot.mechs.map(mech => mech.id).includes(pilot.state.active_mech_id)) {
+            activeMech = pilot.mechs.find(mech => mech.id === pilot.state.active_mech_id);
+        }
+        else {
+            activeMech  = pilot.mechs[0];
+        }
+
         let systems = activeMech.loadouts[activeMech.active_loadout_index].systems;
 
         console.log("===MACROS FOR " + pilot.callsign.toUpperCase() + "===");
@@ -1184,9 +1192,18 @@
     // character sheet for this mech needs to be opened, with the callsign as its name
     function enterMacros(pilot) {
         let callsign = pilot.callsign.replace(/″/g,"");
-        let activeMech = !pilot.mechs.map(mech => mech.id).includes(pilot.state.active_mech_id) ? pilot.mechs[0] : pilot.mechs.find(mech => {
-            return mech.id === pilot.state.active_mech_id
-        });
+        
+        let activeMech;
+        if (pilot.mechs.map(mech => mech.id).includes(pilot.state.remote_mech_id)) {
+            activeMech = pilot.mechs.find(mech => mech.id === pilot.state.remote_mech_id);
+        }
+        else if (pilot.mechs.map(mech => mech.id).includes(pilot.state.active_mech_id)) {
+            activeMech = pilot.mechs.find(mech => mech.id === pilot.state.active_mech_id);
+        }
+        else {
+            activeMech  = pilot.mechs[0];
+        }
+
         let macros = buildMacros(pilot, activeMech);
         let stats = getStats(pilot, activeMech);
         // find correct character sheet (has to be open and share the pilot's callsign)
