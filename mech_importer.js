@@ -236,6 +236,11 @@
                 "traits": ["[Fragile](~448)", "[Slow](~409)", "[Weak Computer](~405)", "[Exposed Reactor](~400)"],
                 "passive": "[Divert Energy](~690)",
                 "active": "[Cascading Core Surge](~691)"
+            },
+            "Psyche": {
+                "traits": ["[Multi Role Sniper Team](~727)", "[Advanced Neurolinks](~728)", "[Bulky Ammo Feeders](~732)", "[Shared Armaments](~729)"],
+                "passive": "[Cerberus Drone](~730)",
+                "active": "[Machine Convergence](~731)"
             }
         },
         "talents": {
@@ -440,7 +445,16 @@
             "[Z-X40's Plasma Thrower](~710)",
             "[Tsar's Nanocarbon Sword](~712)",
             "[Artemis' Probability Flayer](~713)",
-            "[Wraith's Vulture DMR](~714)"
+            "[Wraith's Vulture DMR](~714)",
+            "[Silver Knight's Terashima Blade](~733)",
+            "[Fuath's Andromeda Laser](~734)",
+            "[Lazarus' Kinetic Hammer](~735)",
+            "[Sundance's Leviathan Assault Cannon](~737)",
+            "[Tangent's Gravity Gun](~738)",
+            "[Coffe's Nanobot Whip](~741)",
+            "[Singe's Assault Rifle](~742)",
+            "[Springfield's Ripjaw](~743)",
+            "[Drunk Cat's Sharangas](~744)"
         ],
         "mods": [
             "[Paracausal Mod](~208)",
@@ -597,7 +611,10 @@
             "[Peregrine's Ferrous Lash](~699)",
             "[Jockstrap's Expanded Compartment](~701)",
             "[Whammy's External Batteries](~705)",
-            "[Valiant's Custom Paint Job](~707)"
+            "[Valiant's Custom Paint Job](~707)",
+            "[Backfire's Siege Ram](~736)",
+            "[TŌGE-RAIDER’S Ramjet](~739)",
+            "[Mozi's Mule Harness](~740)"
 
         ],
         "deployables": [
@@ -766,7 +783,16 @@
             "mw_artemis_probability_flayer": "[Artemis' Probability Flayer](~713)",
             "mw_stardivers_kinetic_hammer": "[Stardiver's Kinetic Hammer](~700)",
             "mw_phoenix_andromeda_pattern_heavy_laser_rifle": "[Phoenix' Andromeda](~703)",
-            "mw_zx40_plasma_thrower": "[Z-X40's Plasma Thrower](~710)"
+            "mw_zx40_plasma_thrower": "[Z-X40's Plasma Thrower](~710)",
+            "mw_silver_knights_heavy_terashima":"[Silver Knight's Terashima Blade](~733)",
+            "mw_fuaths_andromeda":"[Fuath's Andromeda Laser](~734)",
+            "mw_lazarus_kinetic_hammer":"[Lazarus' Kinetic Hammer](~735)",
+            "mw_sundances_leviathan_heavy_assault_cannon":"[Sundance's Leviathan Assault Cannon](~737)",
+            "mw_tangents_gravity_gun":"[Tangent's Gravity Gun](~738)",
+            "mw_coffees_nanobot_whip":"[Coffe's Nanobot Whip](~741)",
+            "mw_singes_assault_rifle":"[Singe's Assault Rifle](~742)",
+            "mw_springfields_ripjaw_particle_cannon":"[Springfield's Ripjaw](~743)",
+            "mw_drunk_cats_sharanga_missiles":"[Drunk Cat's Sharangas](~744)"
         },
         "mods": {
             "wm_uncle_class_comp_con": "UNCLE Class",
@@ -807,7 +833,10 @@
             "ms_peregrines_ferrous_lash": "[Peregrine's Ferrous Lash](~699)",
             "ms_jockstraps_expanded_compartment": "[Jockstrap's Expanded Compartment](~701)",
             "ms_whammys_external_batteries": "[Whammy's External Batteries](~705)",
-            "ms_valiants_custom_paint_job": "[Valiant's Custom Paint Job](~707)"
+            "ms_valiants_custom_paint_job": "[Valiant's Custom Paint Job](~707)",
+            "ms_backfires_siege_ram":"[Backfire's Siege Ram](~736)",
+            "ms_tōge_raiders_ramjet":"[TŌGE-RAIDER’S Ramjet](~739)",
+            "ms_mozis_mule_harness":"[Mozi's Mule Harness](~740)"
         },
         "deployables": {
             "ms_pattern_a_smoke_charges": "Smoke Charges",
@@ -839,6 +868,18 @@
     let weaponRelevantCB = [
         "cb_overpower_caliber", "cb_auto_stabilizing_hardpoints", "cb_gyges_frame", "cb_the_lesson_of_thinking_tomorrows_thought", "cb_truestrike_stabilizers"
     ];
+
+    let weaponsmithStrings = {
+        "ms_weaponsmith_1A":"[Knockback 2](~Interpoint Macro Sheet Backend|Backend5)",
+        "ms_weaponsmith_1B":"[Overkill](~Interpoint Macro Sheet Backend|Backend8)",
+        "ms_weaponsmith_1C":"**On Crit:** [Prone](~Interpoint Macro Sheet Backend|Backend29)",
+        "ms_weaponsmith_2A":"[Armor Piercing](~Interpoint Macro Sheet Backend|Backend3)",
+        "ms_weaponsmith_2B":"**+3 Range / +1 Threat**",
+        "ms_weaponsmith_2C":"**Crits on 19+**",
+        "ms_weaponsmith_3A":"**+1 Accuracy** [AI](~Interpoint Macro Sheet Backend|Backend32)",
+        "ms_weaponsmith_3B":"[Seeking](~Interpoint Macro Sheet Backend|Backend11) [AI](~Interpoint Macro Sheet Backend|Backend32)",
+        "ms_weaponsmith_3C":"**+2 Bonus Damage** [AI](~Interpoint Macro Sheet Backend|Backend32)"
+    }
 
     // stats for all the frames
     /* to get stats for new frames, run frames.json through this (by setting frames to the json):
@@ -899,7 +940,8 @@
         "ic_nestor":{"armor":1,"hp":10,"evasion":8,"edef":6,"heatcap":5,"repcap":5,"sensor_range":10,"tech_attack":0,"save":10,"speed":4},
         "ic_orpheus":{"armor":0,"hp":6,"evasion":12,"edef":10,"heatcap":4,"repcap":2,"sensor_range":3,"tech_attack":2,"save":12,"speed":6},
         "ic_pollux":{"armor":0,"hp":8,"evasion":6,"edef":10,"heatcap":8,"repcap":4,"sensor_range":8,"tech_attack":-2,"save":10,"speed":3},
-        "ic_theseus":{"armor":0,"hp":12,"evasion":6,"edef":6,"heatcap":8,"repcap":4,"sensor_range":5,"tech_attack":0,"save":11,"speed":4}
+        "ic_theseus":{"armor":0,"hp":12,"evasion":6,"edef":6,"heatcap":8,"repcap":4,"sensor_range":5,"tech_attack":0,"save":11,"speed":4},
+        "ic_psyche":{"armor":0,"hp":6,"evasion":12,"edef":8,"heatcap":5,"repcap":5,"sensor_range":15,"tech_attack":1,"save":10,"speed":5}
     }
 
     let coreBonusStats = {
@@ -1068,16 +1110,29 @@
         }
     }
 
+    function getWeaponsmithStrings(activeMech) {
+        let systems = activeMech.loadouts[activeMech.active_loadout_index].systems;
+        let wsStrings = []
+        for (let wsBonus in weaponsmithStrings) {
+            if (systems.map(system => system.id).includes(wsBonus)) {
+                wsStrings.add(weaponsmithStrings[wsBonus]);
+            }
+        }
+        return wsStrings;
+    }
+
     // returns macro for mech Weapons
     function buildWeaponsString(activeMech, coreBonuses) {
         let {
             weapons,
             mods
         } = getWeaponsAndMods(activeMech);
+        let wsStrings = getWeaponsmithStrings(activeMech);
         return "/w \"@{selected|character_name}\" \"@{selected|character_name}\" &{template:default} {{name=Weapons}} {{Weapons= " +
             weapons.map(parseWeapon).concat(parse(activeMech.frame, "frames").data.weapon || []).join(" ") + "}} {{Mods= " +
             mods.map(parseMod).join(" ") + "}} {{Core Bonus= " +
-            coreBonuses.filter(cb => weaponRelevantCB.includes(cb)).map(cbTag => parse(cbTag, "coreBonuses")).join(" ") + "}}"
+            coreBonuses.filter(cb => weaponRelevantCB.includes(cb)).map(cbTag => parse(cbTag, "coreBonuses")).join(" ") + "}}" + 
+            (wsStrings.isEmpty() ? "" : (" {{Weaponsmith= " + wsStrings.join("\n") + "}}"))
     }
 
     // returns macro for Invade
@@ -1136,7 +1191,7 @@
             activeMech = pilot.mechs.find(mech => mech.id === pilot.state.active_mech_id);
         }
         else {
-            activeMech  = pilot.mechs[0];
+            activeMech = pilot.mechs[0];
         }
 
         let systems = activeMech.loadouts[activeMech.active_loadout_index].systems;
@@ -1201,7 +1256,7 @@
             activeMech = pilot.mechs.find(mech => mech.id === pilot.state.active_mech_id);
         }
         else {
-            activeMech  = pilot.mechs[0];
+            activeMech = pilot.mechs[0];
         }
 
         let macros = buildMacros(pilot, activeMech);
