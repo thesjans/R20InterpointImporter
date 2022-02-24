@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Interpoint Macro Importer
 // @namespace    Roll20InterpointMacroImporter
-// @version      0.6.1
+// @version      0.6.2
 // @description  Allows users to easily import mechs using the Interpoint Macros
 // @author       thesjans
 // @icon         https://www.google.com/s2/favicons?domain=tampermonkey.net
