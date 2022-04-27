@@ -971,23 +971,23 @@
 
     // deepCopy this and add in the stats
     let statsTemplate = {
-        "armor": {"name": "Armor", "value": 0},
-        "hp": {"name": "1.HP", "value": 0, "max": 0},
-        "evasion": {"name": "Evasion", "value": 0},
-        "edef": {"name": "E-Defense", "value": 0},
-        "heatcap": {"name": "2.Heat", "value": 0, "max": 0},
-        "repcap": {"name": "Repair Cap", "value": 0},
-        "sensor_range": {"name": "Sensors", "value": 0},
-        "tech_attack": {"name": "Tech Attack Bonus", "value": 0},
-        "save": {"name": "Save", "value": 0},
-        "speed": {"name": "Speed", "value": 0},
-        "grit": {"name": "Grit", "value": 0},
-        "hull": {"name": "Hull", "value": 0},
-        "agility": {"name": "Agility", "value": 0},
-        "systems": {"name": "Systems", "value": 0},
-        "engineering": {"name": "Engineering", "value": 0},
-        "ranged_attack_bonus": {"name": "Death's Head Ranged Attack Bonus (0 or 1)", "value": 0},
-        "limited_bonus": {"name": "Limited Systems Bonus", "value": 0}
+        "armor": {"name": "Armor", "current": 0},
+        "hp": {"name": "1.HP", "current": 0, "max": 0},
+        "evasion": {"name": "Evasion", "current": 0},
+        "edef": {"name": "E-Defense", "current": 0},
+        "heatcap": {"name": "2.Heat", "current": 0, "max": 0},
+        "repcap": {"name": "Repair Cap", "current": 0},
+        "sensor_range": {"name": "Sensors", "current": 0},
+        "tech_attack": {"name": "Tech Attack Bonus", "current": 0},
+        "save": {"name": "Save", "current": 0},
+        "speed": {"name": "Speed", "current": 0},
+        "grit": {"name": "Grit", "current": 0},
+        "hull": {"name": "Hull", "current": 0},
+        "agility": {"name": "Agility", "current": 0},
+        "systems": {"name": "Systems", "current": 0},
+        "engineering": {"name": "Engineering", "current": 0},
+        "ranged_attack_bonus": {"name": "Death's Head Ranged Attack Bonus (0 or 1)", "current": 0},
+        "limited_bonus": {"name": "Limited Systems Bonus", "current": 0}
     }
 
     // html element used for displaying errors to the user
@@ -998,34 +998,34 @@
         let stats = JSON.parse(JSON.stringify(statsTemplate));
         // add in stats from frame, HASE, LL, core bonuses and systems
         for (let key in frameStats[mech.frame]) {
-            stats[key].value += frameStats[mech.frame][key];
+            stats[key].current += frameStats[mech.frame][key];
         }
         for (let index in HASEStats) {
             for (let key in HASEStats[index]) {
-                stats[key].value += HASEStats[index][key] * pilot.mechSkills[index];
+                stats[key].current += HASEStats[index][key] * pilot.mechSkills[index];
             }
         }
         for (let key in LLStats) {
-            stats[key].value += LLStats[key] * pilot.level;
+            stats[key].current += LLStats[key] * pilot.level;
         }
         pilot.core_bonuses.filter( cb => cb in coreBonusStats).forEach( cb => {
             for (let key in coreBonusStats[cb]) {
-                stats[key].value += coreBonusStats[cb][key];
+                stats[key].current += coreBonusStats[cb][key];
             }
         })
         mech.loadouts[mech.active_loadout_index].systems.filter(system => system.id in systemStats).forEach( system => {
             for (let key in systemStats[system.id]) {
-                stats[key].value += systemStats[system.id][key];
+                stats[key].current += systemStats[system.id][key];
             }
         })
         // round values
         for (let key in stats) {
-            stats[key].value = Math.round(stats[key].value);
+            stats[key].current = Math.round(stats[key].current);
         }
         // adjust hp and heatcap
-        stats.hp.max = stats.hp.value;
-        stats.heatcap.max = stats.heatcap.value;
-        stats.heatcap.value = 0;
+        stats.hp.max = stats.hp.current;
+        stats.heatcap.max = stats.heatcap.current;
+        stats.heatcap.current = 0;
 
         return stats
     }
@@ -1216,9 +1216,9 @@
         let systems = activeMech.loadouts[activeMech.active_loadout_index].systems;
 
         return [{
-            "title": "2.Frame-Features",
-            "macroText": buildFrameFeaturesString(pilot.core_bonuses, activeMech)
-        },
+                    "title": "2.Frame-Features",
+                    "macroText": buildFrameFeaturesString(pilot.core_bonuses, activeMech)
+                },
                 {
                     "title": "5.Weapons",
                     "macroText": buildWeaponsString(activeMech, pilot.core_bonuses)
@@ -1261,39 +1261,24 @@
 
         let macros = buildMacros(pilot, activeMech);
         let stats = getStats(pilot, activeMech);
-        // find correct character sheet (has to be open and share the pilot's callsign)
-        let r20MechSheet = [...document.getElementsByClassName("characterdialog")].find(characterdialog => characterdialog.parentElement.firstChild.textContent.replace(/″/g,"").toLowerCase().includes(callsign.toLowerCase()));
+
+        // new & improved! access character data directly instead
+        let charData = Campaign.characters.models.find(char => char.attributes.name.replace(/″/g,"").toLowerCase().includes(callsign.toLowerCase()));
         // lil bit of error handling
-        if (!r20MechSheet) {
-            let errMsg = "Could not find character sheet for callsign \"" + callsign + "\". Make sure that the character sheet is open and has the correct name.";
+        if (!charData) {
+            let errMsg = "Could not find character for callsign \"" + callsign + "\". Make sure that the character exists and has the correct name.";
             showError(errMsg, "Error: " + errMsg);
             return
         }
-        if (r20MechSheet.parentNode.attributes.style.textContent.includes("display: none")) {
-            let errMsg = "Please exit edit mode for callsign \"" + callsign + "\".";
-            showError(errMsg, "Error: " + errMsg);
-            return
-        }
-        // navigate to abilities
-        let r20CharacterViewer = r20MechSheet.children[0].contentDocument.getElementsByClassName("characterviewer")[0];
-        r20CharacterViewer.getElementsByClassName("nav-tabs")[0].children[1].children[0].click();
 
-        // enter macros into abilities
+        // save macros into abilities
         macros.forEach(macro => {
-            let ability = [...r20CharacterViewer.getElementsByClassName("abil")].find(ability => ability.getElementsByClassName("abilname")[0].innerText == macro.title);
-            if (!!ability) {
-                ability.getElementsByClassName("action tokenizer")[0].value = macro.macroText;
-                ability.getElementsByClassName("saveabil")[0].click();
-            } else {
-                showError("Warning: Could not edit ability named \"" + macro.title + "\"","Warning: Could not edit ability named \"" + macro.title + "\". Make sure that that ability exists and is not already opened for editing.")
-            }
+            charData.abilities.models.find(abil => abil.attributes.name == macro.title).save({action:macro.macroText});
         })
-
+        // save stats into attributes
         for (let statCode in stats) {
-            let stat = stats[statCode];
-            let attribute = [...r20CharacterViewer.getElementsByClassName("attrib")].find(attribute => attribute.getElementsByClassName("attrname")[0].textContent == stat.name);
-            attribute.getElementsByClassName("current")[0].firstChild.defaultValue = stat.value;
-            if (!!stat.max) attribute.getElementsByClassName("max")[0].firstChild.defaultValue = stat.max;
+            let {name, ...values} = stats[statCode];
+            charData.attribs.models.find(attr => attr.attributes.name == name).save(values);
         }
     }
 
