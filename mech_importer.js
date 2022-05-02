@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Interpoint Macro Importer
 // @namespace    Roll20InterpointMacroImporter
-// @version      0.6.2
+// @version      0.6.3
 // @description  Allows users to easily import mechs using the Interpoint Macros
 // @author       thesjans
 // @icon         https://www.google.com/s2/favicons?domain=tampermonkey.net
@@ -24,6 +24,12 @@
             "Sagarmatha": {
                 "traits": ["[Heroism](~596)", "[Replaceable Parts](~396)", "[Guardian](~410)"],
                 "active": "[Rallying Cry](~597)"
+            },
+            "Störtebeker": {
+                "traits": ["[Dynamic Reload](~745)", "[Quick Step](~746)"],
+                "passive": "[Truesilver](~747)",
+                "active": "[Truesilver Arsenal](~748)",
+                "weapon": "[Holdout Pistol](~749)"
             },
             "Blackbeard": {
                 "traits": ["[Grapple Cable](~398)", "[Lock/Kill Subsystem](~399)", "[Exposed Reactor](~400)"],
@@ -78,6 +84,11 @@
                 "traits": ["[Repulsor Field](~436)", "[Mag Parry](~437)"],
                 "active": "[Mag Field](~438)"
             },
+            "Orchis": {
+                "traits": ["[Perfect Parry](~772)", "[Guardian](~410)", "[Royal Guard](~773)"],
+                "passive": "[Hunting Eagle](~774)",
+                "active": "[Helion](~775)"
+            },
             "Death's Head": {
                 "traits": ["[Neuro Link](~439)", "[Perfected Targeting](~440)"],
                 "active": "[Neural Shunt](~441)"
@@ -94,6 +105,10 @@
                 "traits": ["[Avenger Silos](~449)", "[Seeking Payload](~450)"],
                 "active": "[Divine Punishment](~451)"
             },
+            "Viceroy": {
+                "traits": ["[Near Threat Targeting Processors](~776)", "[Vigilante Omni Directional Launchers](~777)", "[Pressure Plating](~492)"],
+                "active": "[Heaven's Downpour](~778)"
+            },
             "Mourning Cloak": {
                 "traits": ["[Hunter](~452)", "[Biotic Components](~453)"],
                 "passive": "[Blinkspace Jump](~454)",
@@ -107,6 +122,16 @@
                 "traits": ["[Scout Battlefield](~582)", "[Invigorating Scanners](~583)", "[Weathering](~584)"],
                 "passive": "[Grounded](~585)",
                 "active": "[Guerrilla Warfare](~586)"
+            },
+            "Emperor": {
+                "traits": ["[Storm Shield](~716)", "[Imperial Vestment](~717)", "[Sovereign Presence](~718)"],
+                "active": "[Xerxes Apex](~720)",
+                "weapon": "[Marathon Arc Bow](~719)"
+            },
+            "White Witch": {
+                "traits": ["[Rooted](~680)", "[Harden](~681)", "[Guardian](~410)", "[Fluid Burst](~766)"],
+                "passive": "[Ferroreative Armor](~682)",
+                "active": "[Hyperactive Mode](~683)"
             },
             "Balor": {
                 "traits": ["[Scouring Swarm](~459)", "[Regeneration](~460)", "[Self Perpetuating](~461)"],
@@ -142,6 +167,11 @@
                 "traits": ["[Invert Cockpit](~483)", "[Internal Metafold](~484)", "[Localized Maze](~485)"],
                 "passive": "[Metafold Maze](~486)",
                 "active": "[Maze](~487)"
+            },
+            "Calendula": {
+                "traits": ["[Sculptor of Fate](~767)", "[Grammaton Law](~768)", "[Grammaton Mantle](~767)"],
+                "passive": "[Execrate](~770)",
+                "active": "[Execration of the Names of the Unworthy Dead ](~771)"
             },
             "Pegasus": {
                 "traits": ["[By the Way, I know Everything](~488)"],
@@ -280,7 +310,12 @@
             "Reactor Criminal": ["[Reactor Criminal 1](~643)", "[Reactor Criminal 2](~644)", "[Reactor Criminal 3](~645)"],
             "Corpse Collector": ["[Corpse Collector 1](~646)", "[Corpse Collector 2](~647)", "[Corpse Collector 3](~648)"],
             "Antiquarian": ["[Antiquarian 1](~649)", "[Antiquarian 2](~650)", "[Antiquarian 3](~651)"],
-            "Weaponsmith": ["[Weaponsmith 1](~677)", "[Weaponsmith 2](~678)", "[Weaponsmith 3](~679)"]
+            "Weaponsmith": ["[Weaponsmith 1](~677)", "[Weaponsmith 2](~678)", "[Weaponsmith 3](~679)"],
+            "Twisted Genius": ["[Twisted Genius 1](~759)", "[Twisted Genius 2](~760)", "[Twisted Genius 3](~761)"],
+            "Prospector": ["[Prospector 1](~756)", "[Prospector 2](~757)", "[Prospector 3](~758)"],
+            "Gumshoe": ["[Gumshoe 1](~763)", "[Gumshoe 2](~764)", "[Gumshoe 3](~765)"],
+            "House Guard": ["[Houseguard 1](~750)", "[Houseguard 2](~751)", "[Houseguard 3](~752)"],
+            "Pankrati": ["[Pankrati 1](~753)", "[Pankrati 2](~754)", "[Pankrati 3](~755)"]
         },
         "coreBonuses": [
             "[Improved Armament](~218)",
@@ -454,7 +489,10 @@
             "[Coffe's Nanobot Whip](~741)",
             "[Singe's Assault Rifle](~742)",
             "[Springfield's Ripjaw](~743)",
-            "[Drunk Cat's Sharangas](~744)"
+            "[Drunk Cat's Sharangas](~744)",
+            "[Retort Loop](~689)",
+            "[Ferrofluid Lance](~684)",
+            "[Bolt Nexus](~722)"
         ],
         "mods": [
             "[Paracausal Mod](~208)",
@@ -515,7 +553,12 @@
             "[Last Gamble](~630)",
             "[Chrono Anchor](~657)",
             "[Timestream Shredder](~663)",
-            "[Metameleia's False Idol](~671)"
+            "[Metameleia's False Idol](~671)",
+            "[Dominion's Breadth](~721)",
+            "[The Imperial Eye](~723)",
+            "[Shahnameh](~724)",
+            "[Ayah of the Syzygy](~725)",
+            "[Walk of Kings](~726)"
         ],
         "systems": [
             "[Custom Paint Job](~92)",
@@ -614,7 +657,8 @@
             "[Valiant's Custom Paint Job](~707)",
             "[Backfire's Siege Ram](~736)",
             "[TŌGE-RAIDER’S Ramjet](~739)",
-            "[Mozi's Mule Harness](~740)"
+            "[Mozi's Mule Harness](~740)",
+            "[Pinning Spire](~685)"
 
         ],
         "deployables": [
@@ -637,7 +681,8 @@
             "[Omnibus Plate](~578)",
             "[Smokestack Heatsink](~581)",
             "[Junkyard's Blink Charges](~698)",
-            "[Rolling Thunder's Roller Charges](~715)"
+            "[Rolling Thunder's Roller Charges](~715)",
+            "[Ferrospike Barrier](~688)"
         ],
         "shields": [
             "[Type3 Projected Shield](~175)",
@@ -652,7 +697,9 @@
             "[Hyperdense Armor](~184)",
             "[Oasis Wall](~185)",
             "[Magnetic Shield](~186)",
-            "[Solstice Shield](~558)"
+            "[Solstice Shield](~558)",
+            "[Sympathetic Shield](~686)",
+            "[Camus Razor](~687)"
         ],
         "drones": [
             "[Turret Drones](~187)",
@@ -699,7 +746,10 @@
             "mf_tokugawa_alt_enkidu": "Enkidu",
             "mf_swallowtail_alt_swallowtail_ranger_variant": "Ranger Swallowtail",
             "mf_deaths_head": "Death's Head",
-            "mf_genghis": "Ghengis"
+            "mf_genghis": "Ghengis",
+            "mf_black_witch_alt_orchidea": "Orchis",
+            "mf_minotaur_alt_wraith": "Calendula",
+            "mf_micro_monarch": "Viceroy"
         },
         "talents": {
             "t_spaceborn": "Space Born"
@@ -811,7 +861,8 @@
             "ms_distort": "Realspace Breach",
             "ms_tear_firmament": "Wandering Nightmare",
             "ms_rewrite": "Antilinear Time",
-            "ms_metameleias_h0r_os_system_upgrade_ii": "[Metameleia's False Idol](~671)"
+            "ms_metameleias_h0r_os_system_upgrade_ii": "[Metameleia's False Idol](~671)",
+            "ms_the_walk_of_kings": "[Walk of Kings](~726)"
         },
         "systems": {
             "ms___scorpion_v70.1": "Scorpion V70.1",
@@ -847,7 +898,9 @@
             "ms_junkyards_blink_charges": "[Junkyard's Blink Charges](~698)",
             "ms_rts_roller_directed_payload_charges": "[Rolling Thunder's Roller Charges](~715)"
         },
-        "shields": {},
+        "shields": {
+            "ms_camuss_razor": "[Camus Razor](~687)"
+        },
         "drones": {},
         "ai": {
             "ms_comp_con_class_assistant_unit": "Comp/Con",
@@ -892,6 +945,7 @@
     */
     let frameStats = {
         "missing_frame":{"armor":0,"hp":10,"evasion":8,"edef":8,"heatcap":6,"repcap":5,"sensor_range":10,"tech_attack":0,"save":10,"speed":4},
+        "mf_störtebeker":{"armor":1,"hp":8,"evasion":9,"edef":7,"heatcap":5,"repcap":5,"sensor_range":8,"tech_attack":0,"save":10,"speed":4},
         "mf_standard_pattern_i_everest":{"armor":0,"hp":10,"evasion":8,"edef":8,"heatcap":6,"repcap":5,"sensor_range":10,"tech_attack":0,"save":10,"speed":4},
         "mf_blackbeard":{"armor":1,"hp":12,"evasion":8,"edef":6,"heatcap":4,"repcap":5,"sensor_range":5,"tech_attack":-2,"save":10,"speed":5},
         "mf_drake":{"armor":3,"hp":8,"evasion":6,"edef":6,"heatcap":5,"repcap":5,"sensor_range":10,"tech_attack":0,"save":10,"speed":3},
@@ -932,6 +986,11 @@
         "mf_tokugawa_alt_enkidu":{"armor":1,"hp":10,"evasion":8,"edef":8,"heatcap":8,"repcap":5,"sensor_range":5,"tech_attack":-2,"save":10,"speed":3},
         "mf_genghis_alt_worldkiller_genghis_mk_i":{"armor":3,"hp":6,"evasion":6,"edef":8,"heatcap":8,"repcap":4,"sensor_range":5,"tech_attack":-2,"save":10,"speed":3},
         "mf_swallowtail_alt_swallowtail_ranger_variant":{"armor":0,"hp":6,"evasion":10,"edef":8,"heatcap":4,"repcap":5,"sensor_range":20,"tech_attack":1,"save":10,"speed":6},
+        "mf_white_witch":{"armor":0,"hp":7,"evasion":10,"edef":6,"heatcap":4,"repcap":5,"sensor_range":5,"tech_attack":0,"save":11,"speed":6},
+        "mf_emperor":{"armor":0,"hp":2,"evasion":10,"edef":8,"heatcap":5,"repcap":2,"sensor_range":15,"tech_attack":1,"save":11,"speed":5},
+        "mf_black_witch_alt_orchidea":{"armor":1,"hp":8,"evasion":10,"edef":10,"heatcap":6,"repcap":4,"sensor_range":10,"tech_attack":-1,"save":12,"speed":5},
+        "mf_minotaur_alt_wraith":{"armor":2,"hp":7,"evasion":7,"edef":10,"heatcap":6,"repcap":3,"sensor_range":8,"tech_attack":1,"save":11,"speed":4},
+        "mf_micro_monarch":{"armor":1,"hp":8,"evasion":8,"edef":8,"heatcap":5,"repcap":4,"sensor_range":10,"tech_attack":0,"save":11,"speed":5},
         "ic_acastus":{"armor":1,"hp":8,"evasion":10,"edef":8,"heatcap":5,"repcap":3,"sensor_range":5,"tech_attack":-2,"save":10,"speed":5},
         "ic_argus":{"armor":0,"hp":10,"evasion":8,"edef":8,"heatcap":5,"repcap":3,"sensor_range":15,"tech_attack":0,"save":11,"speed":5},
         "ic_atalanta":{"armor":0,"hp":8,"evasion":10,"edef":8,"heatcap":4,"repcap":3,"sensor_range":8,"tech_attack":0,"save":11,"speed":6},
@@ -961,7 +1020,10 @@
         {"engineering": 1, "heatcap": 1, "limited_bonus": 0.49}
     ]
 
-    let LLStats = {"grit": 0.5, "hp": 0.5, "save": 0.5}
+    let LLStatsList = {
+        "default": {"grit": 0.5, "hp": 0.5, "save": 0.5},
+        "mf_emperor": {"grit": 0.5, "save": 0.5},
+    }
 
     let systemStats = {
         "ms_personalizations": {"hp": 2},
@@ -1005,6 +1067,8 @@
                 stats[key].current += HASEStats[index][key] * pilot.mechSkills[index];
             }
         }
+        // get stats per LL depending on frame, default to standard grit scaling
+        let LLStats = LLStatsList[mech.frame] || LLStatsList.default;
         for (let key in LLStats) {
             stats[key].current += LLStats[key] * pilot.level;
         }
@@ -1131,7 +1195,7 @@
         return "/w \"@{selected|character_name}\" \"@{selected|character_name}\" &{template:default} {{name=Weapons}} {{Weapons= " +
             weapons.map(parseWeapon).concat(parse(activeMech.frame, "frames").data.weapon || []).join(" ") + "}} {{Mods= " +
             mods.map(parseMod).join(" ") + "}} {{Core Bonus= " +
-            coreBonuses.filter(cb => weaponRelevantCB.includes(cb)).map(cbTag => parse(cbTag, "coreBonuses")).join(" ") + "}}" + 
+            coreBonuses.filter(cb => weaponRelevantCB.includes(cb)).map(cbTag => parse(cbTag, "coreBonuses")).join(" ") + "}}" +
             (wsStrings.isEmpty() ? "" : (" {{Weaponsmith= " + wsStrings.join("\n") + "}}"))
     }
 
@@ -1247,7 +1311,7 @@
     // character sheet for this mech needs to be opened, with the callsign as its name
     function enterMacros(pilot) {
         let callsign = pilot.callsign.replace(/″/g,"");
-        
+
         let activeMech;
         if (pilot.mechs.map(mech => mech.id).includes(pilot.state.remote_mech_id)) {
             activeMech = pilot.mechs.find(mech => mech.id === pilot.state.remote_mech_id);
